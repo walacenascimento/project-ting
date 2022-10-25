@@ -21,3 +21,15 @@ def exists_word(word, instance):
 
 def search_by_word(word, instance):
     """Aqui irá sua implementação"""
+    occurrences = exists_word(word, instance)
+
+    for index in range(instance.__len__()):
+        for data in occurrences:
+            sentences = data["ocorrencias"]
+            if data["arquivo"] == instance.search(index)["nome_do_arquivo"]:
+                for sentence in sentences:
+                    inst_data = instance.search(index)["linhas_do_arquivo"]
+                    sentence_txt = inst_data[sentence["linha"] - 1]
+                    sentence["conteudo"] = sentence_txt
+
+    return occurrences
